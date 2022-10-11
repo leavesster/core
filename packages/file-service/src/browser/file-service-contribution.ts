@@ -33,14 +33,14 @@ export class FileServiceContribution implements ClientAppContribution {
     const fsProviderContributions = this.contributionProvider.getContributions();
 
     await Promise.all(
-      fsProviderContributions.map((contrib) => {
-        contrib.registerProvider && contrib.registerProvider(this.fileSystem);
+      fsProviderContributions.map(async (contrib) => {
+        contrib.registerProvider && (await contrib.registerProvider(this.fileSystem));
       }),
     );
 
     await Promise.all(
-      fsProviderContributions.map((contrib) => {
-        contrib.onFileServiceReady && contrib.onFileServiceReady();
+      fsProviderContributions.map(async (contrib) => {
+        contrib.onFileServiceReady && (await contrib.onFileServiceReady());
       }),
     );
   }
