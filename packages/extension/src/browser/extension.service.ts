@@ -532,7 +532,7 @@ export class ExtensionServiceImpl extends WithEventBus implements ExtensionServi
       }
     }
 
-    await Promise.all(eagerExtensions.map(async (languagePack) => await languagePack.contributeIfEnabled()));
+    await Promise.all(eagerExtensions.map(async (extension) => await extension.contributeIfEnabled()));
 
     this.commandRegistry.beforeExecuteCommand(async (command, args) => {
       await this.activationEventService.fireEvent('onCommand', command);
