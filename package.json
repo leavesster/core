@@ -53,11 +53,12 @@
     "manifest": "ts-node ./scripts/generate-manifest-json"
   },
   "engines": {
-    "node": ">=12 <=14"
+    "node": ">=14 <=18"
   },
   "dependencies": {
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^7.1.2",
+    "bufferutil": "^4.0.6",
     "commitizen": "^4.2.4",
     "commitlint": "^15.0.0",
     "cz-conventional-changelog": "^2.1.0",
@@ -70,7 +71,9 @@
     "lint-staged": "^12.1.2",
     "lodash": "^4.17.15",
     "mri": "^1.2.0",
-    "node-gyp": "^9.0.0"
+    "node-gyp": "^9.0.0",
+    "uWebSockets.js": "uNetworking/uWebSockets.js#v20.10.0",
+    "utf-8-validate": "^5.0.9"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,md,html,css,less,json}": "prettier --write",

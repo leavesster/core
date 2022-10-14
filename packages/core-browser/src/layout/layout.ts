@@ -172,6 +172,8 @@ export class ResizeEvent extends BasicEvent<ResizePayload> {}
 
 export class RenderedEvent extends BasicEvent<void> {}
 
+export class ComponentContributedEvent extends BasicEvent<void> {}
+
 export type Side = 'left' | 'right' | 'bottom';
 
 export interface ViewState {

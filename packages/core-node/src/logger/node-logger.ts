@@ -24,7 +24,7 @@ export class NodeLogger implements INodeLogger {
   }
 
   log(...args) {
-    return this.logger.log(...args);
+    // return this.logger.log(...args);
   }
   debug(...args) {
     return this.logger.debug(...args);

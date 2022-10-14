@@ -223,6 +223,8 @@ export abstract class ExtensionService {
    */
   abstract getActivatedExtensions(): Promise<{ [key in ExtensionHostType]?: ActivatedExtension[] }>;
 
+  abstract runExtensionContributes(): Promise<void>;
+
   eagerExtensionsActivated: Deferred<void>;
 }
 

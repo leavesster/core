@@ -38,7 +38,7 @@ export class Logger implements ILogServiceClient {
   }
 
   public verbose(...args) {
-    return this.logger.verbose(...args);
+    // return this.logger.verbose(...args);
   }
 
   public critical(...args) {

@@ -13,6 +13,36 @@ import { MessageWriter } from '@opensumi/vscode-jsonrpc/lib/common/messageWriter
  */
 import '@opensumi/vscode-jsonrpc/lib/node/main';
 
+namespace ObjectTransfer {
+  export function replacer(key: string | undefined, value: any) {
+    if (value) {
+      if (value instanceof Uint8Array || value instanceof Uint32Array || value instanceof Uint16Array) {
+        return {
+          type: 'Buffer',
+          data: Array.from(value),
+        };
+      } else if (value instanceof ArrayBuffer) {
+        return {
+          type: 'Buffer',
+          data: Array.from(new Uint8Array(value)),
+        };
+      }
+    }
+
+    return value;
+  }
+
+  export function reviver(key: string | undefined, value: any) {
+    if (value && value.type !== undefined && value.data !== undefined) {
+      if (value.type === 'Buffer') {
+        return Uint8Array.from(value.data);
+      }
+      return value;
+    }
+    return value;
+  }
+}
+
 export class WebSocketMessageReader extends AbstractMessageReader implements MessageReader {
   protected state: 'initial' | 'listening' | 'closed' = 'initial';
   protected callback: DataCallback | undefined;
@@ -59,7 +89,7 @@ export class WebSocketMessageReader extends AbstractMessageReader implements Mes
     if (this.state === 'initial') {
       this.events.splice(0, 0, { message });
     } else if (this.state === 'listening') {
-      const data = JSON.parse(message);
+      const data = JSON.parse(message, ObjectTransfer.reviver);
       this.callback!(data);
     }
   }
@@ -72,7 +102,7 @@ export class WebSocketMessageWriter extends AbstractMessageWriter implements Mes
 
   write(msg): Promise<void> {
     try {
-      const content = JSON.stringify(msg);
+      const content = JSON.stringify(msg, ObjectTransfer.replacer);
       this.socket.send(content);
       return Promise.resolve();
     } catch (e) {
