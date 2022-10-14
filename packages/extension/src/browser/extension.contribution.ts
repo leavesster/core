@@ -28,6 +28,7 @@ import {
   AppConfig,
   CUSTOM_EDITOR_SCHEME,
   IExtensionsPointService,
+  runWhenIdle,
 } from '@opensumi/ide-core-browser';
 import {
   IStatusBarService,
@@ -127,7 +128,6 @@ export class ExtensionClientAppContribution implements ClientAppContribution {
   }
 
   async onStart() {
-    this.extensionService.runExtensionContributes();
     this.preferenceSettingsService.registerSettingGroup({
       id: 'extension',
       title: localize('settings.group.extension'),

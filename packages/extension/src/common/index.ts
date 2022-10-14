@@ -264,7 +264,7 @@ export abstract class VSCodeContributePoint<T extends JSONType = JSONType> exten
 
   protected readonly iconService?: IIconService;
 
-  abstract contribute(): void;
+  abstract contribute(): void | Promise<void>;
 
   protected toIconClass(
     iconContrib: { [index in ThemeType]: string } | string,

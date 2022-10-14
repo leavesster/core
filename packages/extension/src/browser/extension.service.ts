@@ -17,6 +17,7 @@ import {
   ProgressLocation,
   ExtensionDidContributes,
   getLanguageId,
+  runWhenIdle,
 } from '@opensumi/ide-core-common';
 import { IExtensionStorageService } from '@opensumi/ide-extension-storage';
 import { FileSearchServicePath, IFileSearchService } from '@opensumi/ide-file-search/lib/common';
@@ -187,7 +188,10 @@ export class ExtensionServiceImpl extends WithEventBus implements ExtensionServi
     await this.initExtensionMetaData();
     await this.initExtensionInstanceData();
     await this.runEagerExtensionsContributes();
-    this.doActivate();
+    runWhenIdle(() => {
+      this.runExtensionContributes();
+      this.doActivate();
+    });
 
     // 监听页面展示状态，当页面状态变为可见且插件进程待重启的时候执行
     const onPageVisibilitychange = () => {
@@ -545,7 +549,7 @@ export class ExtensionServiceImpl extends WithEventBus implements ExtensionServi
    * 激活插件的 Contributes
    */
   public async runExtensionContributes() {
-    await Promise.all(this.normalExtensions.map((extension) => extension.contributeIfEnabled()));
+    await Promise.all(this.normalExtensions.map(async (extension) => await extension.contributeIfEnabled()));
 
     // try fire workspaceContains activateEvent ，这里不要 await
     Promise.all(
