@@ -1,0 +1,9 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "../../../packages/pipeline/src",
+    "outDir": "../../../packages/pipeline/lib"
+  },
+  "include": ["../../../packages/pipeline/src"],
+  "exclude": ["../../../packages/pipeline/__mocks__"]
+}

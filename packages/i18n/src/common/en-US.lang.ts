@@ -196,7 +196,8 @@ export const localizationBundle = {
     'explorer.electron.openInSystemTerminal': 'Open In Terminal',
     'explorer.electron.openInSystemTerminal.error': 'Open {0} In Terminal Fail: {1}',
 
-    'search.title': 'Search',
+    'pipeline.title': 'PIPELINE',
+    'search.title': 'SEARCH',
     'search.input.placeholder': 'Enter search content',
     'search.input.title': 'Search',
     'search.replace.title': 'Replace',

@@ -1,3 +1,5 @@
+import { PipelineModule } from '@oomol/pipeline/lib/browser';
+
 import { ClientAddonModule } from '@opensumi/ide-addons/lib/browser';
 import { CommentsModule } from '@opensumi/ide-comments/lib/browser';
 import { ClientCommonModule, BrowserModule, ConstructorOf } from '@opensumi/ide-core-browser';
@@ -41,6 +43,8 @@ import { WebviewModule } from '@opensumi/ide-webview';
 import { WorkspaceEditModule } from '@opensumi/ide-workspace-edit/lib/browser';
 import { WorkspaceModule } from '@opensumi/ide-workspace/lib/browser';
 
+// 使用名称引用，提示找不到模块
+
 export const CommonBrowserModules: ConstructorOf<BrowserModule>[] = [
   MainLayoutModule,
   OverlayModule,
@@ -55,6 +59,7 @@ export const CommonBrowserModules: ConstructorOf<BrowserModule>[] = [
   FileServiceClientModule,
   StaticResourceModule,
   SearchModule,
+  PipelineModule,
   FileSchemeModule,
   OutputModule,
   QuickOpenModule,

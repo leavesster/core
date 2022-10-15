@@ -106,6 +106,9 @@
       "path": "./references/tsconfig.file-tree-next.json"
     },
     {
+      "path": "./references/tsconfig.pipeline.json"
+    },
+    {
       "path": "./references/tsconfig.search.json"
     },
     {

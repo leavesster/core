@@ -161,6 +161,7 @@ export const localizationBundle = {
     'explorer.electron.openInSystemTerminal': '在系统终端中打开',
     'explorer.electron.openInSystemTerminal.error': '在系统终端中打开 {0} 失败: {1}',
 
+    'pipeline.title': '管道',
     'search.title': '跨文件搜索',
     'search.input.placeholder': '输入搜索内容',
     'search.input.title': '搜索',

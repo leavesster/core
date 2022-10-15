@@ -10,6 +10,7 @@ export const defaultConfig: LayoutConfig = {
   },
   [SlotLocation.left]: {
     modules: [
+      '@oomol/pipeline',
       '@opensumi/ide-explorer',
       '@opensumi/ide-search',
       '@opensumi/ide-scm',
