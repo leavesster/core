@@ -10,7 +10,7 @@ import { getIcon } from '@opensumi/ide-core-browser';
 import { browserViews } from '@opensumi/ide-core-browser/lib/extensions/schema/browserViews';
 import { ComponentContribution, ComponentRegistry } from '@opensumi/ide-core-browser/lib/layout';
 
-import { Pipeline } from './pipeline.view';
+import { PipelineComponent } from './pipeline.component';
 
 export const PIPELINE_CONTAINER_ID = 'pipeline';
 
@@ -25,7 +25,7 @@ export class PipelineContribution implements ComponentContribution {
       iconClass: getIcon('explorer'),
       title: localize('pipeline.title'),
       priority: 10,
-      component: Pipeline,
+      component: PipelineComponent,
       containerId: PIPELINE_CONTAINER_ID,
     });
   }

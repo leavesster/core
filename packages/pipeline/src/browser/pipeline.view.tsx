@@ -1,40 +1,29 @@
-import { observer } from 'mobx-react-lite';
 import React from 'react';
 
-import { ViewState } from '@opensumi/ide-core-browser';
+import { NodeInfo, NodeView } from './pipeline.nodes';
 
-export const Pipeline = React.memo(
-  observer(({ viewState }: React.PropsWithChildren<{ viewState: ViewState }>) => {
-    const data = {
-      pipelines: [
-        {
-          id: '1',
-          name: 'Pipeline 1',
-          description: 'Pipeline 1 description',
-          nodes: [
-            {
-              id: '1',
-              name: 'Node 1',
-              description: 'Node 1 description',
-              type: 'node',
-            },
-          ],
-        },
-        {
-          id: '2',
-          name: 'Pipeline 2',
-          description: 'Pipeline 2 description',
-          nodes: [
-            {
-              id: '2',
-              name: 'Node 2',
-              description: 'Node 2 description',
-              type: 'node',
-            },
-          ],
-        },
-      ],
-    };
-    return <div>pipeline</div>;
-  }),
-);
+// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+type PipelineInfo = {
+  id: string;
+  name: string;
+  description: string;
+  nodes: NodeInfo[];
+};
+export const PipelineView = React.memo((pipelineInfo: PipelineInfo) => {
+  const [folded, setFolded] = React.useState(true);
+  return (
+    <div>
+      {folded && <div>click</div>}
+      {!folded && (
+        <div>
+          <div>name: {pipelineInfo.name}</div>
+          <div>description: {pipelineInfo.description}</div>
+          {pipelineInfo.nodes.map((nodeInfo) => (
+            <NodeView {...nodeInfo} />
+          ))}
+        </div>
+      )}
+      <button onClick={() => setFolded(!folded)}>{folded ? '点击展开' : '点击缩放'}</button>
+    </div>
+  );
+});
